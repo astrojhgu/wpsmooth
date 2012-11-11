@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import math
-from scipy.optimize import root
+from scipy.optimize import newton_krylov
 import numpy as np
 from scipy import interpolate
 
@@ -89,4 +89,5 @@ for i in Xn:
 for i in Xn:
     Yinit.append(-2)
 
-sol=root(func,Yinit,method='anderson')
+    #sol=root(func,Yinit,method='krylov')
+sol=newton_krylov(func,Yinit)
