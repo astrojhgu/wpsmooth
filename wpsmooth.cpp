@@ -177,7 +177,7 @@ int main (void)
     }
   cout<<2*p.N_grid<<endl;
 
-  T = gsl_multiroot_fsolver_broyden;
+  T = gsl_multiroot_fsolver_hybrid;
   s = gsl_multiroot_fsolver_alloc (T, 2*p.N_grid);
   gsl_multiroot_fsolver_set (s, &f, x);
   //return 0;
@@ -200,7 +200,11 @@ int main (void)
   while (status == GSL_CONTINUE && iter < 1000);
   
   printf ("status = %s\n", gsl_strerror (status));
-  
+  ofstream ofs("result.dat");
+  for(int i=0;i<p.mn.size();++i)
+    {
+      ofs<<p.xn[i]<<"\t"<<p.yn[i]<<"\t"<<gsl_vector_get(s->x,p.mn[i])<<endl;
+    }
   gsl_multiroot_fsolver_free (s);
   gsl_vector_free (x);
   return 0;
