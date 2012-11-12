@@ -79,6 +79,8 @@ def func(Y):
     resid=0
     for i in result:
         resid+=i*i
+    resid/=len(result);
+    resid=math.sqrt(resid)
     print(cnt,resid)
     return result
 
