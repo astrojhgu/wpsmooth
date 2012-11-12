@@ -76,12 +76,12 @@ int func (const gsl_vector * Y, void *params,
       double s=0;
       for(int i=0;i<mn.size();++i)
 	{
-	  s+=(Xn.at(j)-xn.at(i))+psi(yn.at(i)-gsl_vector_get(Y,mn.at(i)));
+	  s+=max(Xn.at(j)-xn.at(i),0.)*psi(yn.at(i)-gsl_vector_get(Y,mn.at(i)));
 	}
       s/=(-2*lbd);
       result[2*(j-1)+1]=((hj1-2*hj+hj_1)-pw(Xn[j],params)*exp(hj)*Delta_j*s);
     }
-  result[result.size()-4]=(gsl_vector_get(Y,N_grid+1)-gsl_vector_get(Y,N_grid+2));
+  result[result.size()-4]=(gsl_vector_get(Y,N_grid)-gsl_vector_get(Y,N_grid+1));
   result[result.size()-3]=(gsl_vector_get(Y,2*N_grid-1)-gsl_vector_get(Y,2*N_grid-2));
   double s1=0;
   double s2=0;
