@@ -78,7 +78,7 @@ def func(Y):
     result.append(s2)
     resid=0
     for i in result:
-        resid+=i
+        resid+=i*i
     print(cnt,resid)
     return result
 
@@ -91,3 +91,4 @@ for i in Xn:
 
     #sol=root(func,Yinit,method='krylov')
 sol=newton_krylov(func,Yinit)
+print sol
