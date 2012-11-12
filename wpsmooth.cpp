@@ -85,8 +85,10 @@ int func (const gsl_vector * Y, void *params,
   result[result.size()-3]=(gsl_vector_get(Y,2*N_grid-1)-gsl_vector_get(Y,2*N_grid-2));
   double s1=0;
   double s2=0;
+  ofstream ofs("result.dat");
   for(int i=0;i<mn.size();++i)
     {
+      ofs<<xn[i]<<"\t"<<yn[i]<<"\t"<<gsl_vector_get(Y,mn[i])<<endl;
       s1+=psi(yn[i]-gsl_vector_get(Y,mn[i]));
       s2+=xn[i]*psi(yn[i]-gsl_vector_get(Y,mn[i]));
     }
